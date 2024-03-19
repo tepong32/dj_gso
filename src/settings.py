@@ -46,7 +46,6 @@ INSTALLED_APPS = [
 
     # custom
     'home',
-    'data_entry',
     'user',
     
 ]

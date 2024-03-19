@@ -1,4 +1,6 @@
 {% load static %}
+{% load model_fields %} <!-- custom filter from templatetags folder -->
+
 <div class="row" >
 	<div class="container overflow-auto col-12 mb-2" style="min-height: 400px; max-height:400px;margin-bottom: 5px; padding: 0;">
 		<div class="col-12">
@@ -65,7 +67,7 @@
 						{% for u in users %}
 						<div class="row">
 							<div class="col-4">
-								<a href="{% url 'profile' u.username %}" title="check {{u.username}}'s profile">{{u.username}}</a>
+								<a href="{% url 'profile' user.username %}" title="check {{user.username}}'s profile">{{user.username}}</a>
 							</div>
 							<div class="col">
 								<small class="text text-muted" style="font-size: 10px">registered: {{ u.date_joined|date:"F d, Y" }}</i></small>
@@ -93,4 +95,81 @@
 			</div>
 		</div>
 	</div>
+
+
+<!-- Table from adminlte3 -->
+
+
+<div class="row"><div class="col-sm-12 col-md-6"><div class="dt-buttons btn-group flex-wrap">               <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>CSV</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>Excel</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>PDF</span></button> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="example1" type="button"><span>Print</span></button> <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-colvis" tabindex="0" aria-controls="example1" type="button" aria-haspopup="true" aria-expanded="false"><span>Column visibility</span><span class="dt-down-arrow"></span></button></div> </div></div><div class="col-sm-12 col-md-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label></div></div></div>
+
+
+{% comment %}
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <!-- Generate table headers -->
+                {% for field in users.0|model_fields %}
+                    <th>{{ field.verbose_name }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Generate table rows -->
+            {% for user in users %}
+                <tr>
+                    {% for field in user|model_fields %}
+                        <td>{{ user|get_attr:field.name }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endcomment %}
+
+
+items
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <!-- Generate table headers -->
+                {% for field in items.0|model_fields %}
+                    <th class="text-center">{{ field.verbose_name }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Generate table rows -->
+            {% for item in items %}
+                <tr>
+                    {% for field in item|model_fields %}
+                        <td>
+                        	<!-- adding conditional stringformat for obrNum field // 6 digits with leading zeros-->
+                            {% if field.name == "OBR #" %}
+                                {{ item|get_attr:field.name|stringformat:"06" }}
+                            {% else %}
+                                {{ item|get_attr:field.name }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+	    {% if items.has_previous %}
+	        <a href="?page={{ items.previous_page_number }}">previous</a>
+	    {% endif %}
+	    <span class="current-page">{{ items.number }}</span>
+	    {% if items.has_next %}
+	        <a href="?page={{ items.next_page_number }}">next</a>
+	    {% endif %}
+	</div>
+</div>
+
+
+
 </div>
