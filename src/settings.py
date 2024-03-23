@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     # third-party apps
     'adminlte3',
     'adminlte3_theme',
+    "django_bootstrap5",
+    'django_filters',
 
     # defaults
     'django.contrib.admin',
@@ -122,9 +124,9 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_URL = 'static/'
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/5.0/howto/static-files/
+# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -142,8 +144,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")     # where we want django to save uploaded files
 MEDIA_URL = '/media/'
 
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'     # for the css of crispy forms
 
 LOGIN_REDIRECT_URL = 'home'     # needed for the login.html success instance
 LOGIN_URL = 'login'             # for the @login_required decorator on user.views.profile

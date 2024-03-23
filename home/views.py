@@ -8,16 +8,12 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-	users = User.objects.all()[:10],
 	items = Item.objects.all().order_by("-date")
 	paginator = Paginator(items, 10)  # Show 10 items per page
 	page_number = request.GET.get('page')
 	items_list = paginator.get_page(page_number)
 
 	context = {
-		# 'posts': Post.objects.all().order_by("-date_posted"),
-		# 'announcements': Announcement.objects.all().order_by("-date_posted"),
-		'users': users,
 		'items': items_list
 	}
 
@@ -50,49 +46,28 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 
+import django_filters
+
+from .models import Item
+
+class ItemFilter(django_filters.FilterSet):
+    class Meta:
+        model = Item
+        fields = ['category', 'sub_category', 'supplier', 'status', 'added_by']  # fields you want to filter on
+
+
+class ItemListView(ListView):
+    model = Item
+    template_name = 'home/item_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = ItemFilter(self.request.GET, queryset)
+        return self.filterset.qs
 
 
 
-# trying out multiple objects inside one class-based listView template
-class HomeView(ListView):
-    context_object_name = 'items'    
-    template_name = 'home/home.html'
-    queryset = Item.objects.all()
-    ordering = ['-date_posted']			# filter for newest post first
-    paginate_by = 10					# number of posts to show per page
 
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        '''
-        	This function was used to override the "context" variable on the class-based view.
-        	Think of this as a way of doing 
-        	context = { 'xxx': xxx.objects.all(),
-        				'yyy': yyy.objects.all()
-        				}
-        	in a function-based view.
-        	See 'home.views.home' for a better reference.
-        '''
-        # context['entertainment'] = blogPost.objects.filter(tag="Entertainment").order_by('-date_posted')
-        # context['help'] = blogPost.objects.filter(tag="Help!").order_by('-date_posted')
-        # context['hobby'] = blogPost.objects.filter(tag="Hobby").order_by('-date_posted')
-        # context['jokes'] = blogPost.objects.filter(tag="Jokes").order_by('-date_posted')
-        # context['school'] = blogPost.objects.filter(tag="School").order_by('-date_posted')
-        # context['social'] = blogPost.objects.filter(tag="Social").order_by('-date_posted')
-        # context['reminders'] = BlogReminder.objects.all()
-        # and so on for more models
-        return context
-
-
-# class UserPostFilter(ListView):
-# 	model = Item 			
-# 	template_name = 'home/userposts.html'
-# 	context_object_name = 'items'		# getting the 'posts' key from "context = {'items': Item.objects.all(),}"
-# 	ordering = ['-date']
-# 	paginate_by = 10	
-
-# 	def get_queryset(self):		# this defines the filter for the specific user's posts
-# 		user = get_object_or_404(User, username=self.kwargs.get('username'))
-# 		return Item.objects.filter(added_by=user).order_by('-date')
 
 
 class ItemDetailView(DetailView): # LoginRequiredMixin for authed users
@@ -101,7 +76,6 @@ class ItemDetailView(DetailView): # LoginRequiredMixin for authed users
 	items = Item.objects.all()
 	context = {
 		'items': items,
-		# 'comments': PostComment.objects.filter(post=posts),
 	}
 
 
@@ -115,7 +89,6 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):			# to automatically get the id of the current logged-in user as the author
 		form.instance.added_by = self.request.user 	# set the author to the current logged-in user
 		return super().form_valid(form)
-		
 
 class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Item 
@@ -151,4 +124,6 @@ class ItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == item.added_by:
 			return True
 		return False		
+
+
 
