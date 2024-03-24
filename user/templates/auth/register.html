@@ -1,11 +1,11 @@
 {% extends 'home/index.html' %}
-{#% load crispy_forms_tags %#}
 
 
 {% block content %}
 <section id="home" style="min-height: 100vh">
-  <div class="row" style="justify-content: space-around;"> 
-  <div class="col-md-5">
+  <div class="row">
+  <!-- Sign-up form -->
+  <div class="col-lg-6 col-md-5 col-sm-12">
     <div class="position-relative" style="min-height: 300px;">
         <div class="col">
           <div class="card card-primary">
@@ -16,10 +16,10 @@
             <!-- /.card-header -->
             <!-- form start -->
             <form method="POST">
-              <div class="card-body bg-dark">
+              <div class="card-body">
                 {% csrf_token %}
                 <fieldset class="form-group">
-                  {{ form|crispy }}
+                  {{ form }}
                 </fieldset>
                 <button type="submit" class="btn btn-primary">Sign up</button>
                 <div class="border-top pt-3">
@@ -30,7 +30,7 @@
                     <p>OR</p>
                     <a href="/accounts/google/login/?process=login" class="btn btn-block btn-danger socialaccount_provider google">
                       <i class="fab fa-google-plus mr-2"></i>
-                      Sign up using Google+
+                      Sign up using Google
                     </a>
                   </div>
                 </div>
@@ -41,7 +41,12 @@
         </div>
     </div>
   </div>
+
+  <!-- GSO Logo -->
+  <div class="col-lg-6 col-md-4 col-sm-0">
+    <img src="/media/defaults/gso-logo-no-bg.png" style="max-height: 90vh; border-radius: 20px;"></div>
   </div>
+</div>
 </section>
 
 

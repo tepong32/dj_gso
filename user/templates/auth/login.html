@@ -14,7 +14,7 @@
 	/*background-repeat: no-repeat;*/
 	height: 100%;
 	font-family: 'Numans', sans-serif;
-	background-color: black;
+	/*background-color: teal;*/
 	}
 
 	.container{
@@ -101,64 +101,60 @@
 	margin-left: 4px;
 	}
 </style>
-<div class="container">
-	<div class="row justify-content-around h-100">
+<div class="row">
 		<!-- 1st -->
-		<div class="card">
-			<div class="card-header">
-				<h3>Sign In</h3>
-				<div class="d-flex justify-content-end social_icon">
-					<h6>Quick sign-up & log-in:</h6> 
-						<!-- create an a-tag to cover social_icon -->
-						<!-- <span><i class="fab fa-facebook-square"></i></span> -->
-					<a title="Google" class="socialaccount_provider google text-danger" href="/accounts/google/login/?process=login">
-						<span><i class="fa fa-google"></i></span>
-					</a>
-					<!-- <a title="Facebook" class="socialaccount_provider facebook text-danger" href="#">
-						<span><i class="fa fa-facebook-square"></i></span>
-					</a> -->
+		<div class="col-lg-6 col-md-5 col-sm-12">
+			<div class="card">
+				<div class="card-header">
+					<h3>Sign In</h3>
+					<div class="d-flex justify-content-end social_icon">
+						<h6>Quick sign-up & log-in:</h6> 
+							<!-- create an a-tag to cover social_icon -->
+							<!-- <span><i class="fab fa-facebook-square"></i></span> -->
+						<a title="Google" class="socialaccount_provider google text-danger" href="/accounts/google/login/?process=login">
+							<span><i class="fa fa-google"></i></span>
+						</a>
+						<!-- <a title="Facebook" class="socialaccount_provider facebook text-danger" href="#">
+							<span><i class="fa fa-facebook-square"></i></span>
+						</a> -->
 
-						<!-- create an a-tag to cover social_icon -->
-						<!-- <span><i class="fab fa-twitter-square"></i></span> -->
+							<!-- create an a-tag to cover social_icon -->
+							<!-- <span><i class="fab fa-twitter-square"></i></span> -->
+					</div>
 				</div>
-			</div>
-			<div class="card-body">
-				<form method="POST">
-					{% csrf_token %}
-				    <div class="card-body">
-				      <fieldset class="form-group">
-						<div id="div_id_username" class="input-group form-group">
-						    <div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+				<div class="card-body">
+					<form method="POST">
+						{% csrf_token %}
+					    <div class="card-body">
+					      <fieldset class="form-group">
+							<div id="div_id_username" class="input-group form-group">
+							    <div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+								</div>
+							    <input type="text" name="username" autofocus class="textinput textInput form-control" required id="id_username">
 							</div>
-						    <input type="text" name="username" autofocus class="textinput textInput form-control" required id="id_username">
-						</div>
-				    	<div id="div_id_password" class="input-group form-group">
-				    		<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="password" class="textinput textInput form-control" required id="id_password">
-				    	</div>
-				      </fieldset>
-				      <button type="submit" class="btn float-right login_btn mt-4">Submit</button>
-				      <small class="text-danger float-left mt-5">
-				        <a class="ml-2 mr-2" href="/register/"> Register</a> | | 
-				        <a class="ml-2" href="/password-reset/">Forgot password?</a>
-				      </small>
-				    </div>
-				  </form>
+					    	<div id="div_id_password" class="input-group form-group">
+					    		<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-key"></i></span>
+								</div>
+								<input type="password" name="password" class="textinput textInput form-control" required id="id_password">
+					    	</div>
+					      </fieldset>
+					      <button type="submit" class="btn float-right login_btn mt-4">Submit</button>
+					      <small class="text-danger float-left mt-5">
+					        <!-- <a class="ml-2 mr-2" href="/register/"> Register</a> | |  -->
+					        <a class="ml-2" href="/password-reset/">Forgot password?</a>
+					      </small>
+					    </div>
+					  </form>
+				</div>
 			</div>
 		</div>
 
 		<!-- 2nd -->
-		<div class="card p-3 text-justify text-sm quoteText">
-			<h4>Admin Recommendation:</h4>
-			<p> I personally prefer that you do the manual registration for your email addresses' protection. </p>
-			<p> It's not as if there was no protection in place on the website (it's with "https", dude!), it's more of an added security because I, as the owner/admin of the site,
-			will not send you emails, anyway. :) </p>
-			<p> I also want users to be as anonymous as they can be here so, they can express who they really are. </p>
-			<p> Email addresses are mostly for convenience of recovering accounts in case of forgotten passwords. Still, ...it's your choice. One-click Google registration is faster and you won't have to remember your password. :D </p>
-		</div>
-	</div>
+		<div class="col-lg-6 col-md-4 col-sm-0">
+		    <img src="/media/defaults/gso-logo-no-bg.png" style="max-height: 90vh; border-radius: 20px;"></div>
+		  </div>
 </div>
+</div
 {% endblock content %}

@@ -25,8 +25,10 @@ urlpatterns = [
     path('', include('home.urls'), name="home"),
     path('about/', about, name="about"),
 
+    ### allauth
+    path('accounts/', include('allauth.urls')),
 
-    ### user auth and pw matters ###
+    ### manual user auth and pw matters ###
     path('user/', include('user.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='auth/login.html'), name='login' ),
     path('logout/', logout, name='logout' ),
