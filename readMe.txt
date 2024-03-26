@@ -17,7 +17,7 @@ Additionally, working with GSheets provides utilities for data extracting (same 
 Initially, this is just for the General Services Office but, perhaps, creating slots/pages for other departments and eventually making this the official, centralized database/website for the LGU can be looked-into. We'll need more developers for that, tho.
 
 -------------------------------
-### This project features:
+##This project features:
 	- A feature to address employees' lack of accountability for work done (or not done)
 		Thru the use of a user login system where users are manually added (and given permissions to do stuffs) by the system admin, we can minimize (hopefully, eradicate) employees' finger-pointing culture. Un-authorized/anonymous users are given "view-only" mode for the file. 
 
@@ -33,6 +33,6 @@ Initially, this is just for the General Services Office but, perhaps, creating s
 
 
 -------------------------------
-### Overview:
+##Overview:
 	Files/Sheets will be displayed on <u>read-only</u> mode if the user is not signed-in to the app (default view) and on <u>view-and-edit mode</u> if the user is signed-in. This will required two separate Gdrive share-links from the files to be displayed.
 
