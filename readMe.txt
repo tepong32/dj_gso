@@ -13,6 +13,7 @@ Additionally, working with GSheets provides utilities for data extracting (same 
 	- being able to tell "who-made-what" changes
 	- being able to "restore" certain versions of the record in cases someone intentionally deletes it (sabotage)
 
+<<<<<<< HEAD
 Initially, this is just for the General Services Office but, perhaps, creating slots/pages for other departments and eventually making this the official, centralized database/website for the LGU can be looked-into. We'll need more developers for that, tho.
 
 -------------------------------
@@ -34,3 +35,6 @@ Initially, this is just for the General Services Office but, perhaps, creating s
 -------------------------------
 ### Overview:
 	Files/Sheets will be displayed on <u>read-only</u> mode if the user is not signed-in to the app (default view) and on <u>view-and-edit mode</u> if the user is signed-in. This will required two separate Gdrive share-links from the files to be displayed.
+=======
+Initially, this is just for the General Services Office but, perhaps, creating slots/pages for other departments and eventually making this the official, centralized database/website for the LGU can be looked-into. We'll need more developpers for that, tho.
+>>>>>>> 1c6bfa8c2b6a52f3182455008b9299f176942f54
