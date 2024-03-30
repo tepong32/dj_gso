@@ -36,13 +36,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # defaults
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 
     # third-party apps
     'adminlte3',
     'adminlte3_theme',
     "django_bootstrap5",
     'django_filters',
-
     # django-allauth required's
     'django.contrib.sites',
     'allauth',
@@ -51,15 +57,6 @@ INSTALLED_APPS = [
     # ... include the providers you want to allauth to enable:
     # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-
-
-    # defaults
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
 
     # custom
     'home',
