@@ -8,13 +8,20 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
+
+	# external links as variables
+	# for gsheets: <!-- get the share link and then replace src part with that link then add "?widget=true&amp;headers=false" -->
+	gso_inv_link = "https://docs.google.com/spreadsheets/d/1bQj8XPMQYlP-5xJPTWdf3yyxLehXU_kq/edit?usp=sharing&ouid=101213569485981432969&rtpof=true&sd=true?widget=true&amp;headers=false"
+	
+
 	items = Item.objects.all().order_by("-date")
 	paginator = Paginator(items, 10)  # Show 10 items per page
 	page_number = request.GET.get('page')
 	items_list = paginator.get_page(page_number)
 
 	context = {
-		'items': items_list
+		'items': items_list,
+		'gso_inv_link': gso_inv_link
 	}
 
 	# return render(request, 'home/index.html', context)
