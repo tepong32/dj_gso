@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 def home(request):
 
 	# external links as variables
-	# for gsheets: <!-- get the share link and then replace src part with that link then add "?widget=true&amp;headers=false" -->
+	# <!-- GSheet: add: "?widget=true&amp;headers=false" to share link -->
+	# see home.html
 	gso_inv_link = "https://docs.google.com/spreadsheets/d/1bQj8XPMQYlP-5xJPTWdf3yyxLehXU_kq/edit?usp=sharing&ouid=101213569485981432969&rtpof=true&sd=true?widget=true&amp;headers=false"
 	
 
